@@ -1,15 +1,18 @@
 h3 Console logs {{$ctrl.logs.length}}
+.btn-toolbar
+  .form-group
+    input.form-control(ng-model='$ctrl.filtering.search' placeholder='search')
 
 div(ng-if='$ctrl.logs.length>0') 
   p
-    ul(ng-repeat='browserAndLogs in $ctrl.logs')
-      li(ng-repeat='log in browserAndLogs.logs | filter:{level:$ctrl.filtering.logFilter}')
+    ul(dir-paginate='browserAndLogs in $ctrl.logs | itemsPerPage:$ctrl.filtering.perPage')
+      li(ng-repeat='log in browserAndLogs.logs | filter:$ctrl.filtering.search | filter:{level:$ctrl.filtering.logFilter} ')
         strong(title='Browser name') {{browserAndLogs.browser}}
         |  
-        log(model='log')
+        log(model='log' filtering='$ctrl.filtering')
         | 
         .btn-group 
-          a.btn.btn-xs.btn-default(ng-model="showEnclosedSpec"  uib-btn-checkbox)  
+          a.btn.btn-xs.btn-info(ng-model="showEnclosedSpec"  uib-btn-checkbox)  
             span Show spec
           //- a.btn.btn-xs.btn-default(ng-model="showEnclosedExpect"  uib-btn-checkbox)  
           //-   span Show expectation
@@ -17,24 +20,3 @@ div(ng-if='$ctrl.logs.length>0')
           .well(ng-if='showEnclosedSpec')
             spec(test='browserAndLogs.test' filtering='$ctrl.filtering')
             //- expectation(ng-if='showEnclosedExect' model='browserAndLogs.exp' filtering='$ctrl.filtering')
-
-//- div(ng-repeat='test in $ctrl.model')
-//-   div(ng-repeat='e in test.failedExpectations')
-//-     ul
-//-       li 
-//-         h5(title='Browser name') {{browserAndLogs.browser}}
-//-         log(model='browserAndLogs.logs | filter:{level:$ctrl.filtering.logFilter}')
-//-         div
-//-           a.btn.btn-xs.btn-default(ng-model="showEnclosedSpec"  uib-btn-checkbox)  
-//-             span Show spec
-//-           spec(ng-if='showEnclosedSpec' test='i.$test' filtering='main.filtering')
-//- 
-//-           a.btn.btn-xs.btn-default(ng-model="showEnclosedExpect"  uib-btn-checkbox)  
-//-             span Show expectation
-//-           expectation(ng-if='showEnclosedExect' model='i.$exp' filtering='main.filtering')
-//- 
-//-   div(ng-repeat='e in test.passedExpectations')
-//-     ul
-//-       li 
-//-         h5(title='Browser name') {{browserAndLogs.browser}}
-//-         log(model='browserAndLogs.logs | filter:{level:$ctrl.filtering.logFilter}')

@@ -40,6 +40,7 @@ export class MainController {
       showLogs: true,
       showSpecScreenshots: false,
       showScreenshots: false,
+      perPage: 30,
       logFilter: 'severe'
     };
   }

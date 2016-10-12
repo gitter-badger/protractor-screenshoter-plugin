@@ -118,16 +118,26 @@
               span Error
       p
         hr
-
+        .form-group
+          input.form-control(ng-model='main.filtering.perPage' placeholder='pagingation' )
+        .text-center
+          dir-pagination-controls
       uib-tabset(justified='true')
         uib-tab(index='0')
           uib-tab-heading Console report
           .row
             .col-md-12
               logs(model='main.data.tests | filter:{status:main.filtering.show}' filtering='main.filtering')
-
+              p
+                hr
+                .text-center
+                  dir-pagination-controls
         uib-tab(index='1')
           uib-tab-heading Screenshot report
           .row
-            .col-md-12(ng-repeat='t in main.data.tests | filter:{status:main.filtering.show} as filtered')
+            .col-md-12(dir-paginate='t in main.data.tests | filter:{status:main.filtering.show} | itemsPerPage: main.filtering.perPage')
               spec(test='t' filtering='main.filtering')
+              p
+                hr
+                .text-center
+                  dir-pagination-controls

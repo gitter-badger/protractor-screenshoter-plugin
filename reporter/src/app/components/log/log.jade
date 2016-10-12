@@ -1,8 +1,7 @@
-//- code {{$ctrl.model}}
-div(ng-class='$ctrl.logLevel()')
+span(class='{{$ctrl.color}}')
   strong {{$ctrl.log.level}}
   |  
-  span {{$ctrl.log.message}}
+  span(ng-bind-html="$ctrl.log.message | uibTypeaheadHighlight:$ctrl.filtering.search")
   |  
   span {{$ctrl.log.timestamp | date:'shortTime'}}
   a.btn.btn-default(ng-if='$ctrl.log.stack' ng-model="$ctrl.more" uib-btn-checkbox)

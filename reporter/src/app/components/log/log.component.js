@@ -1,16 +1,12 @@
 class LogController {
-  constructor($log, $scope) {
+  constructor($log) {
     'ngInject';
     this.$log = $log;
-    this.$onInit = () => {
-      $scope.$watch(() => this.model, () => {
-        this.$log.debug('Processing log model' + this.model.length);
-        this.log = this.extract(this.model);
-      });
-    }
+    this.log = this.extract(this.model);
+    this.color = this.getColor();
   }
 
-  logLevel() {
+  getColor() {
     switch (this.log.level.toUpperCase()) {
       case 'INFO':
         return 'text-info';
@@ -36,7 +32,7 @@ class LogController {
         return newLog;
       }
     } catch (ex) {
-      this.$log.debug(ex);
+      // this.$log.debug(ex);
       return log;
     }
   }
@@ -45,7 +41,8 @@ class LogController {
 
 export let LogComponent = {
   bindings: {
-    model: '<'
+    model: '<',
+    filtering: '<?'
   },
   templateUrl: 'app/components/log/log.html',
   controller: LogController

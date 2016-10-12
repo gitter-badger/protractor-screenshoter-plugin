@@ -3,9 +3,11 @@ class LogsController {
     'ngInject';
     this.$log = $log;
     this.$onInit = () => {
-      $scope.$watch(() => this.model ? this.model.length : 0, () => {
+      $scope.$watch(() => this.model ? this.model.length : 0, (value) => {
         // this.$log.debug('Processing tests' + this.model.length);
-        this.logs = this.getLogs(this.model);
+        if (value){
+          this.logs = this.getLogs(this.model);
+        }
       });
     }
 
