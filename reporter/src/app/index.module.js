@@ -5,14 +5,15 @@ import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
 import { ExpectationComponent } from '../app/components/expectation/expectation.component';
-import { LogComponent } from '../app/components/log/log.component';
 import { SpecComponent } from '../app/components/spec/spec.component';
+import { SpecLogsComponent } from '../app/components/spec/logs/spec-logs.component';
+import { LogsComponent } from '../app/components/logs/logs.component';
+import { LogComponent } from '../app/components/log/log.component';
 import { ScreenshotComponent } from '../app/components/screenshot/screenshot.component';
-// import { Data } from '../app/components/dev/data.mock';
-
+import { data } from '../app/components/dev/data.mock';
 angular.module('reporter', ['ngTouch', 'ngSanitize', 'ui.router', 'ui.bootstrap','ngStorage'])
   .constant('moment', moment)
-  // .constant('data', Data)
+  .constant('data', data)
 
   .config(config)
   .config(routerConfig)
@@ -20,7 +21,9 @@ angular.module('reporter', ['ngTouch', 'ngSanitize', 'ui.router', 'ui.bootstrap'
 
   .component('spec', SpecComponent)
   .component('expectations', ExpectationComponent)
-  .component('logs', LogComponent)
+  .component('log', LogComponent)
+  .component('logs', LogsComponent)
+  .component('speclogs', SpecLogsComponent)
   .component('screenshots', ScreenshotComponent)
 
   .controller('MainController', MainController)

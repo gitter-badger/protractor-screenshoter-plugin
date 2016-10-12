@@ -32,7 +32,7 @@ div(ng-if='$ctrl.show && $ctrl.model.length > 0')
         strong {{exp.when | date:'H:mm:ss:sss'}} 
     screenshots(model='exp.screenshots')
 
-    logs(model='exp.logs')
+    speclogs(model='exp.logs')
 
     div(ng-if='exp.stack')
       button.btn.btn-warning(ng-model="$ctrl.showStack" uib-btn-checkbox) 

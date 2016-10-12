@@ -1,18 +1,17 @@
 class LogController {
-  constructor($scope) {
+  constructor($log, $scope) {
     'ngInject';
+    this.$log = $log;
     this.$onInit = () => {
-      $scope.$watch(() => this.spec.filtering.showLogs, (value) => {
-        this.showLogs = value;
-      });
-      $scope.$watch(() => this.spec.filtering.logFilter, (value) => {
-        this.filter = value;
+      $scope.$watch(() => this.model, () => {
+        this.$log.debug('Processing log model' + this.model.length);
+        this.log = this.extract(this.model);
       });
     }
   }
 
-  logLevel(log) {
-    switch (log.level.toUpperCase()) {
+  logLevel() {
+    switch (this.log.level.toUpperCase()) {
       case 'INFO':
         return 'text-info';
       case 'WARNING':
@@ -26,15 +25,27 @@ class LogController {
         return '';
     }
   }
+
+  //some log messages contains as a message object
+  extract(log) {
+    try {
+      let obj = angular.fromJson(log.message);
+      let newLog = obj.message;
+      if (newLog) {
+        newLog.message = newLog.text;
+        return newLog;
+      }
+    } catch (ex) {
+      this.$log.debug(ex);
+      return log;
+    }
+  }
 }
 
 
 export let LogComponent = {
   bindings: {
     model: '<'
-  },
-  require: {
-    spec: '^spec'
   },
   templateUrl: 'app/components/log/log.html',
   controller: LogController

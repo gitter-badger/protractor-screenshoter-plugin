@@ -119,5 +119,15 @@
       p
         hr
 
-    .col-md-12(ng-repeat='t in main.data.tests | filter:{status:main.filtering.show} as filtered')
-      spec(test='t' filtering='main.filtering')
+      uib-tabset(justified='true')
+        uib-tab(index='0')
+          uib-tab-heading Console report
+          .row
+            .col-md-12
+              logs(model='main.data.tests | filter:{status:main.filtering.show}' filtering='main.filtering')
+
+        uib-tab(index='1')
+          uib-tab-heading Screenshot report
+          .row
+            .col-md-12(ng-repeat='t in main.data.tests | filter:{status:main.filtering.show} as filtered')
+              spec(test='t' filtering='main.filtering')
