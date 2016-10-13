@@ -5,31 +5,31 @@ div(ng-if='$ctrl.show && $ctrl.model.length > 0')
     h4(ng-if='$ctrl.passed()').text-success
       i.fa.fa-check
       |  
-      strong(title='actual') {{exp.actual}}
+      strong(title='actual') {{::exp.actual}}
       |  
       strong.text-primary
-        i {{exp.matcherName}}
+        i {{::exp.matcherName}}
       |  
-      strong(title='Expected') {{exp.expected}}
+      strong(title='Expected') {{::exp.expected}}
       |  
       i.text-primary =
       |  
-      strong {{exp.message}}
+      strong {{::exp.message}}
       |  
       span.pull-right.text-info
         i.fa.fa-clock-o
         |  
-        strong {{exp.when | date:'H:mm:ss:sss'}}
+        strong {{::exp.when | date:'H:mm:ss:sss'}}
 
     h4.text-danger(ng-if='$ctrl.failed()') 
       i.fa.fa-exclamation
       |  
-      span {{exp.message}}
+      span {{::exp.message}}
       |  
       span.pull-right.text-info
         i.fa.fa-clock-o
         |  
-        strong {{exp.when | date:'H:mm:ss:sss'}} 
+        strong {{::exp.when | date:'H:mm:ss:sss'}} 
     screenshots(model='exp.screenshots')
 
     speclogs(model='exp.logs')
@@ -44,4 +44,4 @@ div(ng-if='$ctrl.show && $ctrl.model.length > 0')
         p
           h5 Protractor's log:
           pre.text-danger
-            code {{exp.stack}}
+            code {{::exp.stack}}
