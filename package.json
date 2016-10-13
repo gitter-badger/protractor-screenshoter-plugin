@@ -25,8 +25,8 @@
     "protractor-spec-fail-on-console-error"
   ],
   "author": [
-    "Abhishek Swain",
-    "Andrej Zachar"
+    "Andrej Zachar",
+    "Abhishek Swain"
   ],
   "license": "MIT",
   "bugs": {
