@@ -7,12 +7,12 @@
         img.img-responsive(src='assets/logo.svg' title='logo created by Vectors Market from the Noun Project')
     p 
       span.pull-left Total tests 
-        strong {{main.data.tests.length}}
+        strong {{::main.data.tests.length}}
       span.pull-right 
         i.fa.fa-clock-o
         |   
         span Generated on 
-        strong {{main.data.generatedOn | date:'medium'}}
+        strong {{::main.data.generatedOn | date:'medium'}}
   .row
     .col-md-12
       h4 Filtering
@@ -84,6 +84,7 @@
               i.fa(ng-class='main.filtering.showSpecScreenshots ? "fa-toggle-on" : "fa-toggle-off"')
               |  
               span Show after spec done screenshots
+
       p
         hr
       p
@@ -118,25 +119,19 @@
               span Error
       p
         hr
-        .form-group
-          input.form-control(ng-model='main.filtering.perPage' placeholder='pagingation' )
-        .text-center
-          dir-pagination-controls
+
       uib-tabset(justified='true')
         uib-tab(index='0')
           uib-tab-heading Console report
           .row
             .col-md-12
               logs(model='main.data.tests | filter:{status:main.filtering.show}' filtering='main.filtering')
-              p
-                hr
-                .text-center
-                  dir-pagination-controls
         uib-tab(index='1')
           uib-tab-heading Screenshot report
           .row
             .col-md-12(dir-paginate='t in main.data.tests | filter:{status:main.filtering.show} | itemsPerPage: main.filtering.perPage')
               spec(test='t' filtering='main.filtering')
+            .col-md-12
               p
                 hr
                 .text-center

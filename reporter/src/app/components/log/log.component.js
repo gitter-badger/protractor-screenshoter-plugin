@@ -36,13 +36,18 @@ class LogController {
       return log;
     }
   }
+
+  exclude(){
+    this.filtering.excludeList.push(this.log);
+  }
 }
 
 
 export let LogComponent = {
   bindings: {
     model: '<',
-    filtering: '<?'
+    filtering: '=?',
+    noToolbar: '@?'
   },
   templateUrl: 'app/components/log/log.html',
   controller: LogController

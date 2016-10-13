@@ -33,4 +33,4 @@ div(ng-if='$ctrl.model.length>0')
               h4(title='Browser name') {{::i.browser}}
             ul
               li(ng-repeat='log in i.logs | filter:{level:$ctrl.filter} as filtered')
-                log(model='log')
+                log(model='log' no-toolbar='true')

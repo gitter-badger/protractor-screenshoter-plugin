@@ -41,6 +41,7 @@ export class MainController {
       showSpecScreenshots: false,
       showScreenshots: false,
       perPage: 30,
+      excludeList: [],
       logFilter: 'severe'
     };
   }
