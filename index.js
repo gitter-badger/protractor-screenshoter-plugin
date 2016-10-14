@@ -3,7 +3,6 @@ var fs = require('fs');
 var fse = require('fs-extra');
 var mkdirp = require('mkdirp');
 var _ = require('lodash');
-var pug = require('pug');
 var uuid = require('uuid');
 var moment = require('moment');
 
